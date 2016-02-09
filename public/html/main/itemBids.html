@@ -1,0 +1,48 @@
+<h3 class="content-title">
+    <u>
+        Bids for
+        <a ui-sref="itemDetails({itemId: item._id})">
+            {{item.title}}
+        </a>
+    </u>
+</h3>
+<p>Use our bidding system to message people who have bid on your items and finalize your transaction.</p>
+
+<div class="row" ng-show="bids && bids.length > 0">
+    <div ng-repeat="bid in bids" class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
+
+        <div class="list-group row-stat">
+
+            <h3 class="pull-right">
+                <img ng-src="//graph.facebook.com/{{bid.userId}}/picture" />
+            </h3>
+            <h4 class="list-group-item-heading">${{bid.bidAmount}}</h4>
+            <p>Bid placed {{ getRelativeDate(bid) }} by {{bid.firstName}} {{bid.lastName}}</p>
+            <div class="clearfix">&nbsp;</div>
+            <p class="list-group-item-text">
+                <a ui-sref="conversation({otherUserId:  bid.userId})" class="btn btn-secondary btn-block">
+                    Message
+                </a>
+            </p>
+            <br/>
+            <p class="list-group-item-text">
+                <a target="_blank" href="https://www.facebook.com/{{bid.userId}}" class="btn btn-primary btn-block">
+                    View Facebook Profile
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="row" ng-hide="bids && bids.length > 0">
+    <div class="col-md-12">
+        <div class="alert" ng-hide="items && items.length > 0">
+            No bids yet. You can help this process along by
+            <a ui-sref="listItem">
+                sharing your item on facebook
+            </a>.
+        </div>
+    </div>
+</div>

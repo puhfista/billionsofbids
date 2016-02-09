@@ -1,0 +1,25 @@
+
+{
+  "Facebook": {
+    "callbackUrl": "http://localhost:7011/auth/facebook/callback",
+    "itemDetailsPath": "/main/details/",
+    "tagLine" : "Billions of Bids - Not your grandma's marketplace!"
+  },
+  "Cloudinary": {
+    "cloudName" : "kaarta",
+    "key": "361161426148568",
+    "secret" : "Q4q7UDDpqNVGBDRSp3WkPQs3pG8"
+  },
+  "Google" : {
+    "apiKey": "AIzaSyAHPw9JlbIYTogomlMY3lAZn94Fj61G4Lg"
+  },
+  "forceDomain" : {
+    "domain":"localhost:7011",
+    "protocol": "http"
+  },
+  "mongodb":{
+    "user": "ryan",
+    "pass": "h1pst*r",
+    "instance": "ds059471.mongolab.com:59471/kaarta-dev"
+  }
+}

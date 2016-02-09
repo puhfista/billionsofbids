@@ -1,0 +1,46 @@
+<h3 class="content-title" ng-show="otherPersonName">
+    <u>
+        Conversation with <a ng-href="{{otherPersonLink}}" target="_blank">{{otherPersonName}}</a>
+    </u>
+</h3>
+
+<div ng-show="messages" class="feed-item feed-item-question" ng-repeat="message in messages">
+
+    <div class="feed-icon">
+        <img ng-src="//graph.facebook.com/{{message.senderId}}/picture" />
+    </div> <!-- /.feed-icon -->
+
+    <div class="feed-subject">
+        <p><a href="javascript:;">{{message.senderName}}</a> said: </p>
+    </div> <!-- /.feed-subject -->
+
+    <div class="feed-content">
+        <ul class="icons-list">
+            <li>
+                <i class="icon-li fa fa-quote-left"></i>
+                {{message.body}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="feed-actions">
+        <a href="javascript:;" class="pull-right"><i class="fa fa-clock-o"></i> {{getRelativeDate(message)}}</a>
+    </div> <!-- /.feed-actions -->
+
+</div> <!-- /.feed-item -->
+
+<p ng-hide="messages">
+    One moment... Retrieving your messages...
+</p>
+
+
+<div class="share-widget clearfix">
+    <textarea id="conversationTextbox" ng-model="newMessageBody" class="form-control share-widget-textarea" rows="3"  maxlength="500" placeholder="Send a message..." tabindex="1"></textarea>
+    <div class="share-widget-actions">
+        <div class="pull-right">
+            <a ng-click="sendMessage()" class="btn btn-primary btn-sm" tabindex="2">Send</a>
+        </div>
+
+    </div> <!-- /.share-widget-actions -->
+
+</div> <!-- /.share-widget -->

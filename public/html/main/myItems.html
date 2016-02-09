@@ -1,0 +1,39 @@
+<h3 class="content-title"><u>My Items</u></h3>
+<p>You listed them, the people have bid! Click "View Bids" below on an item to see what people thought of it.</p>
+<div class="row" ng-show="items && items.length > 0">
+    <div ng-repeat="item in items" class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
+
+        <div class="list-group row-stat">
+
+            <h3 class="pull-right">
+                <img width="100"  ng-src="{{getImagePreview(item)}}" />
+            </h3>
+            <h4 class="list-group-item-heading">{{ item.title }} ({{ getRelativeDate(item) }})</h4>
+            <p>{{ item.description | limitTo: 100}}...</p>
+            <div class="clearfix">&nbsp;</div>
+            <p class="list-group-item-text">
+                <a ui-sref="itemBids({itemId: item._id})" class="btn btn-secondary btn-block">View Bids</a>
+            </p>
+            <br/>
+            <p class="list-group-item-text">
+                <a ui-sref="itemDetails({itemId: item._id})" class="btn btn-primary btn-block">Go to item</a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert" ng-hide="items && items.length > 0">
+            You have no items currently listed with us.
+            <a ui-sref="listItem">
+                Don't be scared. It's easy!
+            </a>
+        </div>
+    </div>
+</div>

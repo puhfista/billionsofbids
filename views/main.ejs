@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+    <base href="/main/">
+    <title>Billions Of Bids</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta property="fb:app_id" content="1485612201714802"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Billions of Bids - Not Your Grandma's Marketplace!">
+    <meta name="author" content="Ryan Pfister">
+    <!-- Google Font: Open Sans -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/lib/vegas/dist/vegas.min.css">
+    <link rel="stylesheet" href="/lib/angular-ui-select/dist/select.css" />
+    <link href='/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <link href='/lib/animate.css/animate.min.css' rel='stylesheet' type='text/css'>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/3.2.2/ekko-lightbox.min.css" rel="stylesheet">
+    <link href='/css/font-awesome.css' rel='stylesheet' type='text/css'>
+    <link href='/css/ladda-themeless.min.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/magnific-popup.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-fileupload.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap3.css">
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/css/mvpready-admin.css">
+    <link rel="stylesheet" href="/css/mvpready-admin-carrot.css">
+    <link rel="stylesheet" href="/css/mvpready-flat.css">
+    <link href='/css/bob.css' rel='stylesheet' type='text/css'>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHPw9JlbIYTogomlMY3lAZn94Fj61G4Lg"></script>
+</head>
+<body>
+<div id="fb-root"></div>
+
+<div id="wrapper" ng-app="main">
+    <% if (!user) { %>
+    <%- include('partials/header-loggedout', {user: null}); %>
+    <% } else { %>
+    <%- include('partials/header-loggedin', {user: user}); %>
+    <% } %>
+    <% include ./partials/mainnav %>
+    <div class="content">
+
+        <div ng-show="alertThingyShow" id="alertThingy" ng-cloak ng-style="alertThingyStyle" role="tooltip" class="popover">
+            <div class="popover-content">
+                {{alertThingyMessage}}
+            </div>
+        </div>
+
+        <div class="container" ng-class="{ well: noWellOverride !== true }" ui-view>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/bigInteger.min.js"></script>
+<script src="/lib/moment/min/moment.min.js"></script>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/vegas/dist/vegas.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/3.2.2/ekko-lightbox.min.js"></script>
+<script src="/js/spin.min.js"></script>
+<script src="/js/ladda.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/respond.min.js"></script>
+<script src="/lib/underscore/underscore-min.js"></script>
+<script src="/lib/angular/angular.js"></script>
+<script src="/lib/angular-strap/dist/angular-strap.min.js"></script>
+<script src="/lib/angular-strap/dist/angular-strap.tpl.min.js"></script>
+<script src="/lib/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="/lib/angular-ui-select/dist/select.js"></script>
+<script src="/js/angular-load.min.js"></script>
+<script src="/lib/ngSmoothScroll/angular-smooth-scroll.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.min.js"></script>
+<script src="/lib/angular-ui-router/angular-ui-router.min.js"></script>
+<script src="/lib/angular-route/angular-route.js"></script>
+<script src="/lib/ng-file-upload/angular-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+<script src="/lib/ng-file-upload/angular-file-upload.min.js"></script>
+<script src="/lib/q/q.js"></script>
+
+<script src="/js/mvpready-core.js"></script>
+<script src="/js/mvpready-admin.js"></script>
+
+<script src="/js/main/app.js"></script>
+<script src="/js/main/globals.js"></script>
+<script src="/js/main/notificationHeaderController.js"></script>
+<script src="/js/main/messageHeaderController.js"></script>
+<script src="/js/main/indexController.js"></script>
+<script src="/js/main/itemDetailsController.js"></script>
+<script src="/js/main/searchController.js"></script>
+<script src="/js/main/listItemController.js"></script>
+<script src="/js/main/editItemController.js"></script>
+<script src="/js/main/myItemsController.js"></script>
+<script src="/js/main/itemBidsController.js"></script>
+<script src="/js/main/messagesController.js"></script>
+<script src="/js/main/notificationsController.js"></script>
+<script src="/js/main/conversationController.js"></script>
+<script src="/js/main/searchResultsService.js"></script>
+<script src="/js/main/authService.js"></script>
+<script src="/js/main/alertThingyService.js"></script>
+<script src="/js/main/imagePreviewService.js"></script>
+<script src="/js/main/categoryService.js"></script>
+<script src="/js/main/imageUploadService.js"></script>
+<script src="/js/main/ngEnterDirective.js"></script>
+<script src="/js/main/ngOnlyDigitsDirective.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+       $('#mainAppNav [data-toggle="tooltip"]').tooltip()
+    });
+</script>
+
+</body>
+
+</html>

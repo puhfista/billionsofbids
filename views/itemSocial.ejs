@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta property="og:type"                    content="article" />
+    <meta property="og:url"                     content="<%= path %>" />
+    <meta property="og:site_name"               content="Billions Of Bids" />
+    <meta property="fb:app_id"                  content="1485612201714802" />
+    <meta property="og:title"                   content="<%= item.title%>" />
+    <meta property="og:description"             content="<%= truncatedDescription %>" />
+    <% if(item.images.length > 0){ %>
+    <meta property="og:image"                   content="https://res.cloudinary.com/kaarta/image/upload/<%= item.images[0] %>.png" />
+    <%}%>
+
+</head>
+<body>
+<p><%= item.description%></p>
+<% if(item.images.length > 0){ %>
+<% item.images.forEach(function(image){%>
+<img src="//res.cloudinary.com/kaarta/image/upload/<%= image%>.png" />
+<%})%>
+<%}%>
+</body>
+
+
+</html>

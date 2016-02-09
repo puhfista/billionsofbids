@@ -1,0 +1,82 @@
+
+<style type="text/css">
+    body {
+        overflow-y: hidden !important;
+    }
+
+    #searchResultsLeft{
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    @media (max-width: 767px) {
+        body {
+            overflow-y: auto !important;
+        }
+
+        #searchResultsLeft{
+            overflow-y: hidden !important;
+        }
+    }
+</style>
+
+<div class="layout layout-main-right layout-stack-sm">
+
+    <div id="searchResultsLeft" class="col-md-3 col-sm-4 layout-sidebar">
+
+        <h5 class="well">Results for:
+            <div ng-repeat="categoryName in categoryNames">{{categoryName}}</div>
+            {{ distance}} miles of<br />
+            {{ location }}</h5>
+
+        <ul id="searchResultsUl" class="nav nav-layout-sidebar nav-stacked">
+            <li id="searchResult{{item._id}}" ng-repeat="item in items">
+                <div class="searchResultsItem" data-itemid="{{item._id}}" ng-class="getSelectedClass(item)" >
+                    <h4>{{item.title}}</h4>
+                    <img ng-src="{{getImagePreview(item)}}" class="thumbnail" alt="{{item.title}}">
+                    <p style="min-height: 80px;">
+                        {{ item.description | limitTo: 140 }}...
+                    </p>
+                    <a ui-sref="itemDetails({itemId: item._id})" href="#styledModal" class="btn btn-secondary demo-element">View Item</a>
+                    <a data-toggle="modal" ng-click="initializeMobileMap(item)" href="#mapItemLocation" class="btn btn-default demo-element hidden-lg hidden-md hidden-sm">Map</a>
+                </div>
+            </li>
+        </ul>
+
+    </div> <!-- /.col -->
+
+
+
+    <div id="searchResultsRight" class="col-md-9 col-sm-8 hidden-xs" style="padding: 0;">
+
+        <div id="bobResultMap" style="width: 1px;height: 1px;position: absolute;"></div>
+
+    </div> <!-- /.col -->
+
+    <div class="clearfix">&nbsp;</div>
+
+</div>
+
+<div id="mapItemLocation" class="modal modal-styled fade">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">{{currentMapTitle}}</h3>
+            </div> <!-- /.modal-header -->
+
+            <div id="mobileMap" class="modal-body" style="height: 300px;">
+            </div> <!-- /.modal-body -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> <!-- /.modal-footer -->
+
+        </div> <!-- /.modal-content -->
+
+    </div><!-- /.modal-dialog -->
+
+</div><!-- /.modal -->

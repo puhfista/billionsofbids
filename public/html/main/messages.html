@@ -1,0 +1,51 @@
+<h3 class="content-title">
+    <u>
+        Conversations
+    </u>
+</h3>
+<p>Communicate with the world of Billions Of Bids, right here.</p>
+
+<div class="row">
+    <div class="col-sm-7 col-md-8 layout-main">
+        <div class="list-group row-stat" ng-repeat="conversation in conversations">
+
+                <h3 class="pull-right">
+                    <img ng-src="//graph.facebook.com/{{getOtherId(conversation)}}/picture" />
+                </h3>
+                <h4 class="list-group-item-heading">{{getOtherName(conversation)}} ({{ getRelativeDate(conversation) }})</h4>
+                <p class="list-group-item-text">{{ getLastMessage(conversation) }} </p><br />
+                <br/>
+                <p class="list-group-item-text">
+                    <a ui-sref="conversation({otherUserId: getOtherId(conversation)})" class="btn btn-primary btn-block">View Conversation</a>
+                </p>
+
+        </div>
+
+    </div> <!-- /.col -->
+    <div class="col-sm-5 col-md-4 layout-sidebar">
+        <small>Sponsored</small>
+        <!-- messagesRight1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8633298912110310"
+             data-ad-slot="2429749789"
+             data-ad-format="auto"></ins>
+
+        <small>Sponsored</small>
+        <!-- messagesRight2 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8633298912110310"
+             data-ad-slot="8336682588"
+             data-ad-format="auto"></ins>
+
+        <small>Sponsored</small>
+        <!-- messagesRight3 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8633298912110310"
+             data-ad-slot="2290148987"
+             data-ad-format="auto"></ins>
+
+    </div> <!-- /.layout-sidebar -->
+</div> <!-- /.row -->

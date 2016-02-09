@@ -1,0 +1,176 @@
+<style>
+    @media (max-width: 767px) {
+        #wrapper {
+            overflow-x: hidden;
+        }
+    }
+</style>
+
+<div class="row" ng-show="item" id="itemDetailsDOM">
+    <div class="col-md-3 col-sm-5" id="galleryGroup">
+
+        <div ng-show="item.images && item.images.length > 0" ng-repeat="image in item.images track by $index">
+            <div class="thumbnail-view profile-avatar ">
+                <a data-gallery="hello" href="{{getImagePreview(image, 'large')}}" class="thumbnail-view-hover"></a>
+
+                <img style="width: 100%" ng-src="{{getImagePreview(image, 'medium')}}" class="profile-avatar-img thumbnail">
+            </div>
+        </div>
+
+        <img ng-hide="item.images && item.images.length > 0" style="width: 100%" ng-src="{{getImagePreview(null, 'medium')}}">
+    </div> <!-- /.col -->
+
+    <div style="z-index: 2" class="col-md-6 col-sm-7">
+
+        <h3>{{item.title}}</h3>
+        <h5 class="highestBid" ng-repeat="bid in highestbid" ng-show="bids && bids.length > 0">Current High Bid: ${{formatBid(bid.bidAmount)}}</h5>
+
+        <div class="row" ng-show="accessToken">
+            <div class="col-md-1 col-sm-2">
+                <img ng-src="https://graph.facebook.com/{{item.userId}}/picture?access_token={{accessToken}}" style="width: 50px; padding-right: 10px;" alt="">
+
+            </div>
+            <div class="col-md-4 col-sm-4">
+                {{displayName}}<br/>
+                <i class="icon-li fa fa-map-marker"></i> {{item.city}}, {{item.state}}
+            </div>
+        </div>
+        <div class="row" ng-hide="accessToken">
+            <div class="col-md-4 col-sm-4">
+                Log in to see more info
+            </div>
+        </div>
+        <br/>
+
+        <div class="row" id="itemFacebookLikes">
+            <div style="margin-bottom: 10px;" class="col-sm-2 col-md-2 col-lg-2">
+                <div class="fb-like"
+                     data-href="{{absoluteUrl}}"
+                     data-layout="button"
+                     data-action="like"
+                     data-show-faces="true"
+                     data-share="false"></div>
+            </div>
+            <div style="margin-bottom: 10px;" class="col-sm-2 col-md-2 col-lg-2">
+                <div class="fb-share-button"
+                     data-href="{{absoluteUrl}}"
+                     data-layout="button"></div>
+            </div>
+            <div class="col-md-1 col-sm-1" id="pinterestContainer">
+
+            </div>
+        </div>
+
+        <hr/>
+
+        <p ng-show="item.videoUrl">
+            <a id="itemDetailsVideo" ng-href="{{item.videoUrl}}" data-toggle="lightbox">Watch Video</a>
+        </p>
+
+        <p>{{item.description}}</p>
+
+        <hr />
+
+        <br/>
+        <br/>
+
+        <h4 class="content-title">
+            <u>Questions</u>
+        </h4>
+
+        <div id="itemFacebookComments">
+            <div class="fb-comments" data-width="100%" data-version="v2.3" data-href="{{absoluteUrl}}" data-numposts="15" data-colorscheme="light"></div>
+        </div>
+
+
+        <br class="visible-xs">
+        <br class="visible-xs">
+
+    </div> <!-- /.col -->
+
+    <div class="col-md-3">
+        <div ng-hide="isUsersItem">
+            <h5 class="content-title"><u>Bid</u></h5>
+
+            <div class="list-group">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon">$</span>
+                    <input only-digits ng-enter="placeBid()" ng-model="bidAmount" type="text" class="form-control" />
+                    <span class="input-group-addon">.00</span>
+                </div>
+                <br/>
+                <a id="bidPlacingButton" href="javascript:;" ng-click="placeBid()" class="btn btn-primary"><i class="fa fa-dollar"></i> Place Bid</a>
+            </div>
+        </div>
+        <div ng-show="isUsersItem">
+            <h5 class="content-title"><u>Your Item</u></h5>
+
+            <div class="list-group">
+
+                <a ui-sref="editItem({itemId: item._id})" class="list-group-item">
+                    <i class="fa fa-pencil text-primary"></i> &nbsp;&nbsp;Edit Item
+
+                    <i class="fa fa-chevron-right list-group-chevron"></i>
+                </a>
+
+                <a ui-sref="itemBids({itemId: item._id})" class="list-group-item">
+                    <i class="fa fa-bullseye text-primary"></i> &nbsp;&nbsp;View Bids
+
+                    <i class="fa fa-chevron-right list-group-chevron"></i>
+                </a>
+
+                <a href="javascript:alert('feature not yet implemented');" class="list-group-item">
+                    <i class="fa fa-check text-primary"></i> &nbsp;&nbsp;End Bidding
+
+                    <i class="fa fa-chevron-right list-group-chevron"></i>
+                </a>
+
+            </div>
+        </div>
+
+        <h5 class="content-title">
+            <u>Sponsored Ad</u>
+        </h5>
+
+        <!-- itemDetails1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8633298912110310"
+             data-ad-slot="1092617384"
+             data-ad-format="auto"></ins>
+
+        <br>
+
+        <h5 class="content-title">
+            <u>
+                Bid Activity
+            </u>
+        </h5>
+
+        <div class="well" id="bidContainer">
+
+
+            <ul class="icons-list text-md" ng-show="bids && bids.length > 0">
+                <li class="itemDetailBid" ng-repeat="bid in bids | orderBy: '-bidAmount'">
+                    <i class="icon-li fa fa-dollar"></i>
+                    <strong>{{bid.firstName}} {{bid.lastName}} </strong> posted a bid of ${{ formatBid(bid.bidAmount) }}.
+                    <br>
+                    <small>{{ getRelativeDate(bid) }}</small>
+                </li>
+
+            </ul>
+
+            <ul class="icons-list text-md" ng-hide="bids && bids.length > 0">
+                <li>Be the first to bid on this elegant {{item.title}}!</li>
+            </ul>
+
+        </div> <!-- /.well -->
+
+    </div> <!-- /.col -->
+</div>
+
+<div class="row" ng-hide="item">
+    <div class="col-md-3 col-sm-5">
+        Loading...
+    </div>
+</div>

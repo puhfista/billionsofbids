@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+    <base href="/main/">
+    <title><%= title%> &middot;</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta property="fb:app_id" content="1485612201714802"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Billions of Bids - Not your grandma's marketplace!">
+    <meta name="author" content="Ryan Pfister">
+    <!-- Google Font: Open Sans -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+
+    <link href='/css/bootstrap.css' rel='stylesheet' type='text/css'>
+    <link href='/css/font-awesome.css' rel='stylesheet' type='text/css'>
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/css/mvpready-admin.css">
+    <link rel="stylesheet" href="/css/mvpready-admin-carrot.css">
+    <link rel="stylesheet" href="/css/mvpready-flat.css">
+    <link href='/css/bob.css' rel='stylesheet' type='text/css'>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div id="wrapper" ng-app="main">
+    <% if (!user) { %>
+    <%- include('partials/header-loggedout', {user: null}); %>
+    <% } else { %>
+    <%- include('partials/header-loggedin', {user: user}); %>
+    <% } %>
+    <% include ./partials/mainnav %>
+    <div class="content">
+        <div class="container">
+            <h2>
+                Privacy Policy
+            </h2>
+
+            <p>
+                Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate and disclose and make use of personal information. The following outlines our privacy policy.
+            </p>
+
+            <ul>
+                <li>
+                    Before or at the time of collecting personal information, we will identify the purposes for which information is being collected.
+                </li>
+                <li>
+                    We will collect and use of personal information solely with the objective of fulfilling those purposes specified by us and for other compatible purposes, unless we obtain the consent of the individual concerned or as required by law.
+                </li>
+                <li>
+                    We will only retain personal information as long as necessary for the fulfillment of those purposes.
+                </li>
+                <li>
+                    We will collect personal information by lawful and fair means and, where appropriate, with the knowledge or consent of the individual concerned.
+                </li>
+                <li>
+                    Personal data should be relevant to the purposes for which it is to be used, and, to the extent necessary for those purposes, should be accurate, complete, and up-to-date.
+                </li>
+                <li>
+                    We will protect personal information by reasonable security safeguards against loss or theft, as well as unauthorized access, disclosure, copying, use or modification.
+                </li>
+                <li>
+                    We will make readily available to customers information about our policies and practices relating to the management of personal information.
+                </li>
+            </ul>
+
+            <p>
+                We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
+            </p>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
+</body>
+</html>

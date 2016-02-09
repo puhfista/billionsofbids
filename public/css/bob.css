@@ -1,0 +1,100 @@
+.navbar-brand{
+    color: #fed136 !important;
+    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    line-height: 20px;
+    font-size: 21px;
+}
+
+.btn-facebook{
+    background-color: #4e69a2;
+}
+
+#bidContainer{
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+
+.itemDetailBid.ng-enter  {
+    -webkit-animation: rubberBand 1s;
+    animation: rubberBand 1s;
+    display: block;
+    position: relative;
+}
+
+#alertThingy.ng-hide-remove.ng-hide-remove-active{
+    -webkit-animation: lightSpeedIn 1s;
+    animation: lightSpeedIn 1s;
+}
+
+#alertThingy.ng-hide{
+    -webkit-animation: bounceOut 1s;
+    animation: bounceOut 1s;
+}
+
+.highestBid.ng-enter {
+    -webkit-animation: rubberBand 1s;
+    animation: rubberBand 1s;
+}
+
+.highestBid.ng-leave {
+    -webkit-animation: hinge 1s;
+    animation: hinge 1s;
+    position: absolute;
+}
+
+#searchResultsLeft .thumbnail{
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    width: 100px;
+}
+
+.searchResultsItem {
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
+    border-bottom: 1px solid #e5e5e5;
+    color: #f9f9f9;
+    outline: medium none;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.searchResultsItem.selected {
+    background-color: #ECFF6E;
+}
+
+#listItemContainer .badge{
+    padding: 4px 7px;
+    font-size: 11px;
+    border: 100px;
+}
+
+#bidContainer{
+    color: #000;
+}
+
+.well{
+    color: #000;
+}
+
+@media (max-width: 767px) {
+    #mainAppNav .tooltip{
+        display: none !important;
+    }
+}
+
+.navbar-profile-avatar{
+    width: 50px;
+}
+
+.layout-main, .layout-sidebar{
+    padding-top: 0;
+}
+
+.closeButton{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}

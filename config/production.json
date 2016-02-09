@@ -1,0 +1,14 @@
+{
+  "Facebook": {
+    "callbackUrl": "https://www.billionsofbids.com/auth/facebook/callback"
+  },
+  "mongodb":{
+    "user": "ryan",
+    "pass": "ilsid:3nmt",
+    "instance": "ds059888.mongolab.com:59888/kaarta-dev"
+  },
+  "forceDomain" :{
+    "domain": "www.billionsofbids.com",
+    "protocol": "https"
+  }
+}

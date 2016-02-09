@@ -1,0 +1,154 @@
+<header class="navbar navbar-inverse" role="banner">
+    <input type="hidden" id="loggedIn" value="<%= user.id %>"></input>
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars"></i>
+            </button>
+            <a href="./" class="navbar-brand">
+                Billions Of Bids
+            </a>
+        </div> <!-- /.navbar-header -->
+
+        <nav id="mainAppNav" class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav noticebar navbar-left">
+
+                <li ui-sref-active="active">
+
+                    <a ui-sref="main" data-toggle="tooltip" data-delay="0" data-placement="bottom" title="Home">
+                        <i class="fa fa-home"></i>
+                        <span class="navbar-visible-collapsed"> &nbsp;Home&nbsp; </span>
+                    </a>
+
+                </li>
+
+                <li ui-sref-active="active"data-toggle="tooltip" data-placement="bottom" title="List Your Item">
+                    <a ui-sref="listItem">
+                        <i class="fa fa-cloud-upload"></i>
+                        <span class="navbar-visible-collapsed"> &nbsp;List Your Item&nbsp; </span>
+                    </a>
+                </li>
+
+                <li ui-sref-active="active"data-toggle="tooltip" data-placement="bottom" title="My Items">
+                    <a ui-sref="myItems">
+                        <i class="fa fa-gift"></i>
+                        <span class="navbar-visible-collapsed"> &nbsp;My Items&nbsp; </span>
+                    </a>
+                </li>
+
+                <li style="display: none;" ng-controller="notificationHeaderController" class="dropdown">
+                    <!--<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">-->
+                        <!--<i class="fa fa-bell"></i>-->
+                        <!--<span class="navbar-visible-collapsed">&nbsp;Notifications&nbsp;</span>-->
+                        <!--<span class="badge badge-primary">2</span>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu noticebar-menu noticebar-hoverable" role="menu">-->
+                        <!--<li class="nav-header">-->
+                            <!--<div class="pull-left">-->
+                                <!--Notifications-->
+                            <!--</div>-->
+
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="/notifications" class="noticebar-item">-->
+                                        <!--<span class="noticebar-item-image">-->
+                                            <!--<i class="fa fa-ban text-danger"></i>-->
+                                        <!--</span>-->
+                                        <!--<span class="noticebar-item-body">-->
+                                            <!--<strong class="noticebar-item-title">You were outbid</strong>-->
+                                            <!--<span class="noticebar-item-text">Ian has placed a higher bid on Ryan's blender.</span>-->
+                                            <!--<span class="noticebar-item-time"><i class="fa fa-clock-o"></i> 10 minutes ago</span>-->
+                                        <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="/notifications" class="noticebar-item">-->
+                                        <!--<span class="noticebar-item-image">-->
+                                            <!--<i class="fa fa-bullseye text-success"></i>-->
+                                        <!--</span>-->
+                                        <!--<span class="noticebar-item-body">-->
+                                            <!--<strong class="noticebar-item-title">Bid Placed</strong>-->
+                                            <!--<span class="noticebar-item-text">You have placed a bid on Ryan's blender.</span>-->
+                                            <!--<span class="noticebar-item-time"><i class="fa fa-clock-o"></i> 12 minutes ago</span>-->
+                                        <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+
+                        <!--<li class="noticebar-menu-view-all">-->
+                            <!--<a href="/notifications">View All Notifications</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                </li>
+
+                <li ng-controller="messageHeaderController" class="dropdown" data-toggle="tooltip" data-placement="bottom" title="Messages">
+                    <a ui-sref="messages">
+                        <i class="fa fa-envelope"></i>
+                        <span class="navbar-visible-collapsed"> &nbsp;Messages&nbsp; </span>
+                        <span ng-cloak ng-show="messageBadgeNum > 0" class="badge badge-primary">{{messageBadgeNum}}</span>
+                    </a>
+                    <!--<ul class="dropdown-menu noticebar-menu noticebar-hoverable" role="menu">-->
+                        <!--<li class="nav-header">-->
+                            <!--<div class="pull-left">-->
+                               <!--Messages-->
+                            <!--</div>-->
+
+                        <!--</li>-->
+                        <!--<li ng-hide="conversations">-->
+                            <!--Loading messages...-->
+                        <!--</li>-->
+                        <!--<li ng-show="conversations" ng-repeat="conversation in conversations">-->
+                            <!--<a ui-sref="conversation({otherUserId: getOtherId(conversation)})" class="noticebar-item">-->
+                                        <!--<span class="noticebar-item-image">-->
+                                            <!--<img ng-src="//graph.facebook.com/{{getOtherId(conversation)}}/picture" />-->
+                                        <!--</span>-->
+                                        <!--<span class="noticebar-item-body">-->
+                                            <!--<strong class="noticebar-item-title">New Message</strong>-->
+                                            <!--<span class="noticebar-item-text">{{conversation.messages[conversation.messages.length - 1].body | limitTo: 100}}</span>-->
+                                            <!--<span class="noticebar-item-time"><i class="fa fa-clock-o"></i> {{getRelativeDate(conversation)}}</span>-->
+                                        <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="noticebar-menu-view-all">-->
+                            <!--<a ui-sref="messages">View All Conversations</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                </li>
+
+
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown navbar-profile">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                        <img src="//graph.facebook.com/<%= user.id %>/picture" class="navbar-profile-avatar" alt="">
+                        <span class="navbar-profile-label"><%= user.displayName %> &nbsp;</span>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li style="display: none;">
+                            <a href="./page-profile.html">
+                                <i class="fa fa-user"></i>
+                                &nbsp;&nbsp;My Profile
+                            </a>
+                        </li>
+                        <li style="display: none;">
+                            <a href="./page-settings.html">
+                                <i class="fa fa-cogs"></i>
+                                &nbsp;&nbsp;Settings
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/logout">
+                                <i class="fa fa-sign-out"></i>
+                                &nbsp;&nbsp;Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div> <!-- /.container -->
+</header>

@@ -1,0 +1,210 @@
+<div ng-show="item" class="layout layout-main-right layout-stack-sm">
+
+    <div class="col-md-9 col-sm-8 layout-main">
+        <div id="listItemContainer" id="settings-content" class="tab-content stacked-content well">
+            <div class="tab-pane fade in active" id="profile-tab">
+                <h3 class="content-title">
+                    <u>List Your Item</u>
+                </h3>
+                <p>Be brave, be bold, and be as descriptive as you can. Fields marked with a <i class="fa fa-asterisk"></i> are .</p>
+                <br><br>
+                <form id="listItemForm" name="itemForm" class="form-horizontal" ng-enter="doNothing()">
+                    <div class="form-group">
+                        <label class="col-md-3">Item Picture</label>
+                        <div class="col-md-9">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div style="position: relative;" ng-repeat="imageUpload in images track by $index" class="fileupload-new thumbnail" style="width: 180px; height: 180px;">
+                                    <img ng-src="{{imageUpload.thumbnailUrl}}" alt="" />
+                                    <a ng-click="deleteImage(imageUpload)" class="btn btn-danger closeButton"><i class="fa fa-minus-circle"></i></a>
+                                </div>
+                            </div>
+                            <div>
+                                <button data-style="expand-left" id="listItemUploadButton" class="ladda-button btn btn-primary" ng-file-select="" ng-model="files" ng-multiple="true">Add Images</button>
+                            </div>
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="col-md-3"><i class="fa fa-asterisk"></i> Item Title</label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="item.title" value="" class="form-control"  />
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="col-md-3"><i class="fa fa-asterisk"></i> Make/Model&nbsp;
+                            <i data-placement="top" data-trigger="hover" data-toggle="popover" title="Note" data-content="Pick the one that best fits the item you are selling" class="fa fa-question-circle"></i>
+                        </label>
+                        <div class="col-md-7">
+                            <ui-select
+                                    theme="bootstrap"
+                                    class="form-control"
+                                    multiple
+                                    ng-model="item.categories">
+                                <ui-select-match placeholder="Start typing a make/model...">{{$item.group}} {{$item.name}}</ui-select-match>
+                                <ui-select-choices group-by="categoryGroupBy"
+                                                   repeat="category in categories | filter: $select.search"
+                                                   refresh="refreshCategories($select.search)"
+                                                   refresh-delay="300">
+                                    <div ng-bind-html="category.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group" ng-hide="itemId">
+                        <label class="col-md-3">
+                            <i class="fa fa-asterisk"></i>
+                            Street Address&nbsp;
+                            <i data-placement="top" data-trigger="hover" data-toggle="popover" title="Why do you need this?" data-content="We want to put you on the map! We never save your address, just your general location, using a generalized latitude and longitude." class="fa fa-question-circle"></i>
+                        </label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="item.address" value="" class="form-control"   />
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group" ng-hide="itemId">
+                        <label class="col-md-3"><i class="fa fa-asterisk"></i> City</label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="item.city" value="" class="form-control"  />
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group" ng-hide="itemId">
+                        <label class="col-md-3"><i class="fa fa-asterisk"></i> State</label>
+                        <div class="col-md-7">
+                            <select ng-model="item.state" class="form-control" >
+                                <option value=""></option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group" ng-hide="itemId">
+                        <label class="col-md-3"><i class="fa fa-asterisk"></i> Zip</label>
+                        <div class="col-md-7">
+                            <input ng-model="item.zip" name="zip" type="text" value="" class="form-control"  />
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="col-md-3">Video URL</label>
+                        <div class="col-md-7">
+                            <input ng-model="item.videoUrl" name="videoUrl" type="text" class="form-control" placeholder="Example: https://www.youtube.com/watch?v=OMOVFvcNfvE" />
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="col-md-3"><i class="fa fa-asterisk"></i> Description</label>
+                        <div class="col-md-7">
+                            <textarea ng-model="item.description" rows="6" class="form-control" ></textarea>
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="col-md-3">Minimum Bid Amount</label>
+                        <div class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="start-date"><span class="fa fa-dollar"></span></span>
+                                <input ng-model="item.minimumBid" name="minimumBid" type="text" value="" class="form-control" />
+                            </div>
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="col-md-3">End Date</label>
+                        <div class="col-md-7">
+                            <input ng-model="item.endDate" data-date-format="MM-dd-yyyy" data-min-date="today" data-autoclose="1" bs-datepicker name="endDate" type="text" value="" class="form-control" />
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="col-md-3">
+                            Post this to my Facebook feed&nbsp;<span ng-show="itemId">(again)</span>
+                            <i data-placement="top" data-trigger="hover" data-toggle="popover" title="Why would I do this?" data-content="We want as many of your friends as possible to see this. If you are not comfortable with this uncheck this box." class="fa fa-question-circle"></i>
+                        </label>
+                        <div class="col-md-7">
+                            <input type="checkbox" ng-model="item.postToFacebook" checked="checked" />
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group" ng-show="item.postToFacebook">
+                        <label class="col-md-3">Facebook Status Message</label>
+                        <div class="col-md-7">
+                            <textarea ng-model="item.facebookStatusMessage" rows="6" class="form-control"></textarea>
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+
+
+                    <div class="form-group">
+                        <div class="col-md-7 col-md-push-3">
+                            <button ng-click="postItem()" ng-hide="itemId" ng-disabled="itemForm.$invalid" id="listItemSaveButton" data-style="expand-left" type="submit" class="ladda-button btn btn-primary">List Item</button>
+                            <button ng-click="editItem()" ng-show="itemId" id="editItemSaveButton" data-style="expand-left" type="submit" class="ladda-button btn btn-primary">Submit Changes</button>
+                            &nbsp;
+                            <button ui-sref="main" type="reset" class="btn btn-default">Cancel</button>
+                        </div> <!-- /.col -->
+                    </div> <!-- /.form-group -->
+                </form>
+
+            </div> <!-- /.tab-pane -->
+
+        </div> <!-- /.tab-content -->
+    </div> <!-- /.col -->
+</div>
+
+
+<div class="row" ng-hide="item">
+    <div class="col-md-3 col-sm-5">
+        Loading...
+    </div>
+</div>
