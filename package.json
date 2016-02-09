@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "v0.10.33"
+    "node": "v0.12.6"
   },
   "scripts": {
     "start": "node ./app"
